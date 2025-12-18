@@ -1,15 +1,23 @@
-import { Text, View, TextInput, StyleSheet } from "react-native";
+import { Text, View, TextInput, StyleSheet, FlatList } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Header from "../components/Header";
 import { Ionicons } from "@expo/vector-icons";
+import Category from "../components/Category";
+import { useState } from "react";
+
+const categories = ['Trending Now', 'All', 'New', 'Men', 'Women']
 
 export default function HomeScreen() {
+  const [selectedCategory , setSelectedCategory] = useState(null);
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>
         <LinearGradient colors={["#f0fdf6", "#e6f7ef"]} style={styles.container}>
-            <Header />
+
+          <Header />
+
+          {/* Input Container */}
           <Text style={styles.matchText}>Match Your Style</Text>
           <View style={styles.inputContainer}>
             <View style={styles.iconContainer}>
@@ -17,6 +25,19 @@ export default function HomeScreen() {
             </View>
             <TextInput style={styles.TextInput} placeholder="search"/>
           </View>
+
+          {/* Category */}
+          <FlatList 
+            data={categories}
+            renderItem={({item})=> <Category 
+              item={item} 
+              selectedCategory={selectedCategory} 
+              setSelectedCategory={setSelectedCategory}
+              />}
+            keyExtractor={(item)=>item}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
         </LinearGradient>
       </SafeAreaView>
     </SafeAreaProvider>
