@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import { Ionicons } from "@expo/vector-icons";
 import Category from "../components/Category";
 import { useState } from "react";
+import ProductCard from "../components/ProductCard";
 
 const categories = ['Trending Now', 'All', 'New', 'Men', 'Women']
 
@@ -38,6 +39,18 @@ export default function HomeScreen() {
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           />
+
+          {/* Product Card */}
+          <View style={{flexDirection:"row"}}>
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+          </View>
+          <View style={{flexDirection:"row"}}>
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+          </View>
         </LinearGradient>
       </SafeAreaView>
     </SafeAreaProvider>
@@ -46,13 +59,13 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+
     padding:20,
   },
   matchText:{
     fontSize:28,
     color:"#000000",
-    marginTop:25,
+    marginTop:15,
   },
   inputContainer:{
     backgroundColor:"#FFFFFF",
