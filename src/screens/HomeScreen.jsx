@@ -10,7 +10,7 @@ import ProductCard from "../components/ProductCard";
 const categories = ['Trending Now', 'All', 'New', 'Men', 'Women']
 
 export default function HomeScreen() {
-  const [selectedCategory , setSelectedCategory] = useState(null);
+  const [selectedCategory , setSelectedCategory] = useState('Trending Now');
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>

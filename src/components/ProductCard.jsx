@@ -14,7 +14,7 @@ export default function ProductCard(){
                 <Text style={styles.price}>$3343.33</Text>
             </View>
             {/* Heart icon */}
-            <TouchableOpacity onPress={()=>setIsLiked(!isLiked)} style={styles.heartContainer}>
+            <TouchableOpacity onPress={()=>setIsLiked(!isLiked)} style={styles.likeContainer}>
                 {isLiked ?
                     (<Ionicons name="heart-outline" size={20} color={"#e68383ff"}/>) :
                     (<Ionicons name="heart" size={20} color={"#e68383ff"}/>)
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         color:"#9c9c9c",
         fontWeight:"600",
     },
-    heartContainer:{
+    likeContainer:{
         height:34,
         width:34,
         backgroundColor:"#ffffff",
