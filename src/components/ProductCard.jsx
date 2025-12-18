@@ -1,6 +1,8 @@
-import {Text, Image, View, StyleSheet } from "react-native";
-
+import { Ionicons } from "@expo/vector-icons";
+import {Text, Image, View, StyleSheet, TouchableOpacity } from "react-native";
+import { useState } from "react";
 export default function ProductCard(){
+    const [isLiked, setIsLiked] =useState(false);
     return(
         <View style={styles.container}>
             <Image 
@@ -9,8 +11,15 @@ export default function ProductCard(){
             />
             <View style={styles.content}>
                 <Text style={styles.title}>Zip-Neck Sweatshirt</Text>
-            1   <Text style={styles.price}>$3343.33</Text>
+                <Text style={styles.price}>$3343.33</Text>
             </View>
+            {/* Heart icon */}
+            <TouchableOpacity onPress={()=>setIsLiked(!isLiked)} style={styles.heartContainer}>
+                {isLiked ?
+                    (<Ionicons name="heart-outline" size={20} color={"#e68383ff"}/>) :
+                    (<Ionicons name="heart" size={20} color={"#e68383ff"}/>)
+                }
+            </TouchableOpacity>
         </View>
     )
 }
@@ -19,6 +28,7 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         marginTop:10,
+        position:'relative', //for like
     },
     coverImage:{
         height:200,
@@ -39,5 +49,16 @@ const styles = StyleSheet.create({
         fontSize:12,
         color:"#9c9c9c",
         fontWeight:"600",
+    },
+    heartContainer:{
+        height:34,
+        width:34,
+        backgroundColor:"#ffffff",
+        justifyContent:"center",
+        alignItems:"center",
+        borderRadius:17,
+        position:'absolute',
+        top:20,
+        right:20,
     }
 })

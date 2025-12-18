@@ -44,12 +44,12 @@ export default function HomeScreen() {
           <View style={{flexDirection:"row"}}>
             <ProductCard />
             <ProductCard />
-            <ProductCard />
+            
           </View>
           <View style={{flexDirection:"row"}}>
             <ProductCard />
             <ProductCard />
-            <ProductCard />
+            
           </View>
         </LinearGradient>
       </SafeAreaView>
