@@ -9,7 +9,11 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator screenOptions={{
+        headerShown:false,
+        tabBarShowLabel:false,
+        tabBarActiveTintColor:"#34c38f"
+      }}>
         <Tab.Screen name="Home" component={HomeScreen} options={{
         tabBarIcon:({color})=><Ionicons name='home' size={25} color={color} />
         }}/>

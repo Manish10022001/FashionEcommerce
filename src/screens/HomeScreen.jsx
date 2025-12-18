@@ -1,9 +1,21 @@
-import { Text, View } from "react-native"
+import { Text, View, StyleSheet } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
-export default function HomeScreen(){
-    return(
-        <View>
-            <Text>Home Screen</Text>
-        </View>
-    )
+export default function HomeScreen() {
+  return (
+    <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1 }}>
+        <LinearGradient colors={["#f0fdf6", "#e6f7ef"]} style={styles.container}>
+          <Text>Home Screen</Text>
+        </LinearGradient>
+      </SafeAreaView>
+    </SafeAreaProvider>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
