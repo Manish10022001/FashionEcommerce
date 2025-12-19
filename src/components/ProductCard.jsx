@@ -7,12 +7,12 @@ export default function ProductCard({item, isLiked, setIsLiked}){
     return(
         <View style={styles.container}>
             <Image 
-                source={require('../assets/mitem1.jpg')}
+                source={{uri:item.image}}
                 style={styles.coverImage}
             />
             <View style={styles.content}>
-                <Text style={styles.title}>Zip-Neck Sweatshirt</Text>
-                <Text style={styles.price}>$3343.33</Text>
+                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.price}>${item.price}</Text>
             </View>
             {/* Heart icon */}
             <TouchableOpacity onPress={()=>{setIsLiked(!isLiked)}} style={styles.likeContainer}>

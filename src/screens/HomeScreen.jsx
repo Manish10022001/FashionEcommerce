@@ -6,12 +6,13 @@ import { Ionicons } from "@expo/vector-icons";
 import Category from "../components/Category";
 import { useState } from "react";
 import ProductCard from "../components/ProductCard";
-
+import data from "../data/data.json"
 const categories = ['Trending Now', 'All', 'New', 'Men', 'Women']
 
 export default function HomeScreen() {
   const [selectedCategory , setSelectedCategory] = useState('Trending Now');
   const [isLiked, setIsLiked] = useState(false);
+  const [products, setProducts] = useState(data.products)
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>
@@ -67,7 +68,7 @@ export default function HomeScreen() {
                 />
               </>
             }
-            data={[1,2,3,4,5,6]}
+            data={products}
             renderItem={({item, index})=><ProductCard 
               item={item} 
               isLiked={isLiked} 
