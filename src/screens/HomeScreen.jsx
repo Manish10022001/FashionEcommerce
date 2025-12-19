@@ -11,6 +11,7 @@ const categories = ['Trending Now', 'All', 'New', 'Men', 'Women']
 
 export default function HomeScreen() {
   const [selectedCategory , setSelectedCategory] = useState('Trending Now');
+  const [isLiked, setIsLiked] = useState(false);
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>
@@ -19,16 +20,16 @@ export default function HomeScreen() {
           <Header />
 
           {/* Input Container */}
-          <Text style={styles.matchText}>Match Your Style</Text>
+          {/* <Text style={styles.matchText}>Match Your Style</Text>
           <View style={styles.inputContainer}>
             <View style={styles.iconContainer}>
                 <Ionicons name="search" size={26} color={"#C0C0C0"}/>
             </View>
             <TextInput style={styles.TextInput} placeholder="search"/>
-          </View>
+          </View> */}
 
           {/* Category */}
-          <FlatList 
+          {/* <FlatList 
             data={categories}
             renderItem={({item})=> <Category 
               item={item} 
@@ -38,10 +39,47 @@ export default function HomeScreen() {
             keyExtractor={(item)=>item}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-          />
+          /> */}
 
           {/* Product Card */}
-          <View style={{flexDirection:"row"}}>
+          <FlatList 
+            numColumns={2}
+            ListHeaderComponent={
+              <>
+                <Text style={styles.matchText}>Match Your Style</Text>
+                <View style={styles.inputContainer}>
+                  <View style={styles.iconContainer}>
+                    <Ionicons name="search" size={26} color={"#C0C0C0"}/>
+                  </View>
+                  <TextInput style={styles.TextInput} placeholder="search"/>
+                </View>
+
+                <FlatList 
+                  data={categories}
+                  renderItem={({item})=> <Category 
+                    item={item} 
+                    selectedCategory={selectedCategory} 
+                    setSelectedCategory={setSelectedCategory}
+                    />}
+                  keyExtractor={(item)=>item}
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                />
+              </>
+            }
+            data={[1,2,3,4,5,6]}
+            renderItem={({item, index})=><ProductCard 
+              item={item} 
+              isLiked={isLiked} 
+              setIsLiked={setIsLiked}
+            />}
+            showsVerticalScrollIndicator={false}
+          
+            contentContainerStyle={{
+                    paddingBottom:60, //full scroll
+                  }}
+          />
+          {/* <View style={{flexDirection:"row"}}>
             <ProductCard />
             <ProductCard />
             
@@ -50,7 +88,7 @@ export default function HomeScreen() {
             <ProductCard />
             <ProductCard />
             
-          </View>
+          </View> */}
         </LinearGradient>
       </SafeAreaView>
     </SafeAreaProvider>
