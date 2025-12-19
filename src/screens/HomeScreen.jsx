@@ -13,6 +13,19 @@ export default function HomeScreen() {
   const [selectedCategory , setSelectedCategory] = useState('Trending Now');
   const [isLiked, setIsLiked] = useState(false);
   const [products, setProducts] = useState(data.products)
+
+  function handleLiked(item){
+    const newProducts = products.map((prod)=>{
+      if(prod.id === item.id){
+        return{
+          ...prod,
+          isLiked:true,
+        }
+      }
+      return prod;
+    })
+    setProducts(newProducts)
+  }
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>
@@ -71,8 +84,9 @@ export default function HomeScreen() {
             data={products}
             renderItem={({item, index})=><ProductCard 
               item={item} 
-              isLiked={isLiked} 
-              setIsLiked={setIsLiked}
+              handleLiked={handleLiked}
+              // isLiked={isLiked} 
+              // setIsLiked={setIsLiked}
             />}
             showsVerticalScrollIndicator={false}
           

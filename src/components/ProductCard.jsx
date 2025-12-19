@@ -1,7 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import {Text, Image, View, StyleSheet, TouchableOpacity } from "react-native";
 import { useState } from "react";
-export default function ProductCard({item, isLiked, setIsLiked}){
+export default function ProductCard({item, handleLiked}){
 
     // const [isLiked, setIsLiked] =useState(false);
     return(
@@ -15,10 +15,10 @@ export default function ProductCard({item, isLiked, setIsLiked}){
                 <Text style={styles.price}>${item.price}</Text>
             </View>
             {/* Heart icon */}
-            <TouchableOpacity onPress={()=>{setIsLiked(!isLiked)}} style={styles.likeContainer}>
-                {isLiked ?
-                    (<Ionicons name="heart-outline" size={20} color={"#e68383ff"}/>) :
-                    (<Ionicons name="heart" size={20} color={"#e68383ff"}/>)
+            <TouchableOpacity onPress={()=>{handleLiked(item)}} style={styles.likeContainer}>
+                {item.isLiked ?
+                    (<Ionicons name="heart" size={20} color={"#e68383ff"}/>) :
+                    (<Ionicons name="heart-outline" size={20} color={"#e68383ff"}/>)
                 }
             </TouchableOpacity>
         </View>
