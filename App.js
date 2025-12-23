@@ -3,9 +3,22 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import HomeScreen from './src/screens/HomeScreen';
+import ProductDetailsScreen from './src/screens/ProductDetailsScreen';
 import { Ionicons } from '@expo/vector-icons';
 const Tab = createBottomTabNavigator();
 import Category from './src/components/Category';
+import { createStackNavigator } from '@react-navigation/stack';
+const Stack = createStackNavigator();
+function MyHomeStack(){
+  return(
+    <Stack.Navigator screenOptions={{
+      headerShown:false
+    }}>
+      <Stack.Screen name="Home" component={HomeScreen}/>
+      <Stack.Screen name="Product_details" component={ProductDetailsScreen} />
+    </Stack.Navigator>
+  )
+}
 export default function App() {
   return (
     <NavigationContainer>
@@ -14,7 +27,7 @@ export default function App() {
         tabBarShowLabel:false,
         tabBarActiveTintColor:"#34c38f"
       }}>
-        <Tab.Screen name="Home" component={HomeScreen} options={{
+        <Tab.Screen name="Home Stack" component={MyHomeStack} options={{
         tabBarIcon:({color})=><Ionicons name='home' size={25} color={color} />
         }}/>
         <Tab.Screen name="Reorder" component={HomeScreen} options={{
