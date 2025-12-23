@@ -25,7 +25,7 @@ export default function ProductDetailsScreen() {
             <Header />
           </View>
           <ScrollView contentContainerStyle={{paddingBottom:40}}>
-          <Image source={{ uri: item.image }} style={styles.coverImage} />
+          <Image source={{ uri: item.image }} style={styles.coverImage}  resizeMode="contain"/>
           <View style={styles.contentContainer}>
             <Text style={styles.title}>{item.title}</Text>
             <Text style={[styles.title, styles.price]}>${item.price}</Text>
@@ -63,6 +63,11 @@ export default function ProductDetailsScreen() {
                 </TouchableOpacity>
             ))}
           </View>
+          {/*6. Button Container */}
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Add to Cart</Text>
+          </TouchableOpacity>
+
           </ScrollView>
         </LinearGradient>
       </SafeAreaView>
@@ -102,16 +107,16 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   sizeValueContainer: {
-    height: 40,
-    width: 40,
-    borderRadius: 20,
+    height: 30,
+    width: 30,
+    borderRadius: 15,
     backgroundColor: "#e9e0e0ff",
     justifyContent: "center",
     alignItems: "center",
     marginHorizontal: 10,
   },
   sizeValue: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: "600",
   },
   colorText:{
@@ -123,17 +128,29 @@ const styles = StyleSheet.create({
     marginHorizontal:20,
   },
   circle:{
-    height:36,
-    width:36,
-    borderRadius:18,
+    height:28,
+    width:28,
+    borderRadius:14,
   },
   colorBorder:{
     // borderWidth:2,
-    height:48,
-    width:48,
-    borderRadius:24,
+    height:40,
+    width:40,
+    borderRadius:20,
     justifyContent:"center",
     alignItems:"center",
     marginHorizontal:5,
+  },
+  button:{
+    backgroundColor:"#34c38f",
+    padding:20,
+    margin:20,
+    borderRadius:18
+  },
+  buttonText:{
+    fontSize:24,
+    fontWeight:"600",
+    color:"white",
+    textAlign:"center"
   }
 });
