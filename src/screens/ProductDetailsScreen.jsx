@@ -1,18 +1,22 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View,ScrollView, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Header from "../components/Header";
 import { useRoute } from "@react-navigation/native";
 import { useState } from "react";
 
 const sizes = ["S", "M", "L", "XL", "XXL"];
+const colors = ["#91A180","#B11D1D", "#1F44A3", "#9F632A", "#1D752B", "#000000"]
 export default function ProductDetailsScreen() {
   const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
+
   const route = useRoute();
   const { item } = route.params;
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>
+       
         <LinearGradient
           colors={["#f0fdf6", "#e6f7ef"]}
           style={styles.container}
@@ -20,6 +24,7 @@ export default function ProductDetailsScreen() {
           <View style={styles.headerContainer}>
             <Header />
           </View>
+          <ScrollView contentContainerStyle={{paddingBottom:40}}>
           <Image source={{ uri: item.image }} style={styles.coverImage} />
           <View style={styles.contentContainer}>
             <Text style={styles.title}>{item.title}</Text>
@@ -44,6 +49,21 @@ export default function ProductDetailsScreen() {
               </TouchableOpacity>
             ))}
           </View>
+
+          {/* 5.Color */}
+          <Text style={[styles.title, styles.colorText]}>Color</Text>
+          <View style={styles.colorContainer}>
+            {colors.map((color,index)=>(
+                <TouchableOpacity key={index} 
+                                  onPress={()=>setSelectedColor(color)} 
+                                  style={[styles.colorBorder, 
+                                          selectedColor===color && 
+                                            {borderColor:color, borderWidth:2}]}>
+                    <View style={[styles.circle, {backgroundColor:color}]}/>
+                </TouchableOpacity>
+            ))}
+          </View>
+          </ScrollView>
         </LinearGradient>
       </SafeAreaView>
     </SafeAreaProvider>
@@ -94,4 +114,26 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
   },
+  colorText:{
+    marginHorizontal:20,
+    marginTop:10,
+  },
+  colorContainer:{
+    flexDirection:"row",
+    marginHorizontal:20,
+  },
+  circle:{
+    height:36,
+    width:36,
+    borderRadius:18,
+  },
+  colorBorder:{
+    // borderWidth:2,
+    height:48,
+    width:48,
+    borderRadius:24,
+    justifyContent:"center",
+    alignItems:"center",
+    marginHorizontal:5,
+  }
 });
